@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom, #fff8e1, #ffe082);
+  color: #333;
+}
+
+.app-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+h1 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-message {
+  font-size: 1.3em;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: #fbc02d;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(251, 192, 45, 0.4);
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #f9a825;
+  box-shadow: 0 6px 14px rgba(249, 168, 37, 0.6);
+  transform: translateY(-2px);
+}
+
+.study-card {
+  background: #fffde7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  text-align: left;
+}
+
+.study-card h2 {
+  color: #fbc02d;
+  margin-bottom: 10px;
+}
+
+.study-card p {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.btn-study {
+  background: #aed581;
+  box-shadow: 0 4px 10px rgba(139, 195, 74, 0.4);
+}
+
+.btn-study:hover {
+  background: #9ccc65;
+  box-shadow: 0 6px 14px rgba(139, 195, 74, 0.6);
+}
+
+.respuesta label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.bloque-pregunta {
+  margin-bottom: 30px;
+}
+.btn-mini {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 6px 12px;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-mini:hover {
+  background-color: #ddd;
+}
+.nota-personal textarea {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1em;
+  resize: vertical;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+input[type="radio"] {
+  margin-right: 6px;
+}
+#resultado span {
+  font-weight: bold;
+}
+.semana-estudios {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dia-btn {
+  flex: 1;
+  min-width: 100px;
+  background-color: #fff9c4;
+  border: 1px solid #fbc02d;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dia-btn:hover {
+  background-color: #fdd835;
+}
+
+.dia-actual {
+  background-color: #aed581;
+  border-color: #7cb342;
+  color: #fff;
+}

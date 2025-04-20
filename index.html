@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escuela Sabática</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-wrapper" id="login-container">
+    <h1>Escuela Sabática</h1>
+    <input type="text" id="username" class="input-field" placeholder="Ingresa tu nombre">
+    <button class="btn" onclick="login()">Entrar</button>
+  </div>
+
+  <div class="app-wrapper welcome" id="welcome-container" style="display: none;">
+    <h1>Escuela Sabática</h1>
+    <p id="welcome-message"></p>
+    <button class="btn" onclick="goToStudy()">Estudio del día</button>
+    <button class="btn" onclick="logout()">Cerrar sesión</button>
+  </div>
+
+  <div class="app-wrapper" id="study-container" style="display: none;">
+    <h1>Escuela Sabática</h1>
+    <div id="semana-estudios" class="semana-estudios"></div>
+    <div id="mensaje-semana-completa"></div>
+    <div class="study-card"></div>
+    <button class="btn" onclick="backToWelcome()">Volver</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

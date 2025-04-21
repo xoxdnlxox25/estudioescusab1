@@ -1,8 +1,9 @@
+// script.js actualizado
 const API_URL = 'https://script.google.com/macros/s/AKfycbxbDKjQn51qF-Tc8j8uaplSctI1UT9Wzfo-PEDwnk8Y0YEI2RrS2F7hyyjT4g2PcL1KGQ/exec';
 
 function login() {
-  const username = document.getElementById('username').value.trim();
-  if (username !== '') {
+  const username = document.getElementById('username').value;
+  if (username.trim() !== '') {
     localStorage.setItem('sabadoUser', username);
     showWelcome(username);
   }
@@ -19,7 +20,6 @@ function logout() {
   document.getElementById('login-container').style.display = 'block';
   document.getElementById('welcome-container').style.display = 'none';
   document.getElementById('study-container').style.display = 'none';
-  document.getElementById('admin-panel').style.display = 'none';
 }
 
 function goToStudy() {
@@ -27,7 +27,6 @@ function goToStudy() {
   document.getElementById('study-container').style.display = 'block';
   generarBotonesPorDia();
   document.querySelector('.study-card').innerHTML = '<p>Selecciona un día para comenzar el estudio.</p>';
-  mostrarGuiaFlotante();
 }
 
 function backToWelcome() {
@@ -54,16 +53,24 @@ function verificarRespuesta(id, valor) {
   const resultadoEl = document.getElementById(`resultado_${id}`);
   const correcta = resultadoEl.dataset.correcta;
   if (!correcta) return;
-  resultadoEl.textContent = (valor === correcta) ? "✔ Correcto" : "✖ Incorrecto";
-  resultadoEl.style.color = (valor === correcta) ? "green" : "red";
+
+  if (valor === correcta) {
+    resultadoEl.textContent = "✔ Correcto";
+    resultadoEl.style.color = "green";
+  } else {
+    resultadoEl.textContent = "✖ Incorrecto";
+    resultadoEl.style.color = "red";
+  }
 }
 
 function generarBotonesPorDia() {
   const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
   const contenedor = document.getElementById("semana-estudios");
   contenedor.innerHTML = "";
+
   const hoy = new Date();
   const diaActualTexto = dias[hoy.getDay() % 7];
+
   dias.forEach(diaTexto => {
     const btn = document.createElement("button");
     btn.className = `dia-btn${diaTexto === diaActualTexto ? " dia-actual" : ""}`;
@@ -74,7 +81,6 @@ function generarBotonesPorDia() {
 }
 
 function cargarEstudioPorDia(dia) {
-  const usuario = localStorage.getItem('sabadoUser') || 'Anon';
   const urlConDia = `${API_URL}?dia=${dia}`;
 
   fetch(urlConDia)
@@ -85,7 +91,9 @@ function cargarEstudioPorDia(dia) {
         card.innerHTML = `<p>${data.error || "No se encontró ningún estudio disponible."}</p>`;
         return;
       }
+
       let contenidoHTML = `<h2>Estudio para el día ${dia}</h2>`;
+
       data.preguntas.forEach((item, index) => {
         const respuestas = (item.Respuesta || "")
           .split('<br>')
@@ -104,34 +112,24 @@ function cargarEstudioPorDia(dia) {
         if (item.Pregunta) contenidoHTML += `<p><strong>${item.Pregunta}</strong></p>`;
 
         if (item.Versiculo) {
-          const versId = `versiculoBox${index}`;
-          const resaltado = cargarResaltado(versId, item.Versiculo);
           contenidoHTML += `
-            <button class="btn-mini" onclick="toggleVisibility('versiculo${index}')">📖 Versículo</button>
-            <div id="versiculo${index}" style="display: none;">
-              <div id="${versId}" class="versiculo-box highlightable" contenteditable="true"
-                onmouseup="guardarResaltado('${versId}')"
-                ontouchend="guardarResaltado('${versId}')">${resaltado}</div>
-              ${resaltado !== item.Versiculo ? `<button class='btn-mini limpiar' onclick="limpiarResaltado('${versId}', '${item.Versiculo}')">🪑 Quitar resaltado</button>` : ''}
+            <button class="btn-mini" onclick="toggleVisibility('versiculo${index}')">📖 Mostrar/Ocultar versículo</button>
+            <div id="versiculo${index}" class="versiculo-box" style="display: none;">
+              <strong>Versículo:</strong> ${item.Versiculo}
             </div>`;
         }
 
         if (item.Nota) {
-          const notaBoxId = `notaBox${index}`;
-          const notaResaltado = cargarResaltado(notaBoxId, item.Nota);
           contenidoHTML += `
-            <button class="btn-mini" onclick="toggleVisibility('nota${index}')">🖋️ Nota</button>
-            <div id="nota${index}" style="display: none;">
-              <div id="${notaBoxId}" class="nota-box highlightable" contenteditable="true"
-                onmouseup="guardarResaltado('${notaBoxId}')"
-                ontouchend="guardarResaltado('${notaBoxId}')">${notaResaltado}</div>
-              ${notaResaltado !== item.Nota ? `<button class='btn-mini limpiar' onclick="limpiarResaltado('${notaBoxId}', '${item.Nota}')">🪑 Quitar resaltado</button>` : ''}
+            <button class="btn-mini" onclick="toggleVisibility('nota${index}')">📜 Mostrar/Ocultar nota</button>
+            <div id="nota${index}" class="nota-box" style="display: none;">
+              <strong>Nota:</strong> ${item.Nota}
             </div>`;
         }
 
         if (respuestas.length > 0) {
           contenidoHTML += `
-            <button class="btn-mini" onclick="toggleVisibility('respuesta${index}')">✅ Respuestas</button>
+            <button class="btn-mini" onclick="toggleVisibility('respuesta${index}')">Mostrar/Ocultar respuestas</button>
             <div class="respuesta" id="respuesta${index}" style="display: none;">
               <p><strong>Respuesta:</strong></p>
               ${respuestas.map(r => {
@@ -153,6 +151,7 @@ function cargarEstudioPorDia(dia) {
       });
 
       card.innerHTML = contenidoHTML;
+
       data.preguntas.forEach((item, index) => {
         const respuestaId = `respuesta_${dia}_${index}`;
         const valor = localStorage.getItem(respuestaId);
@@ -163,28 +162,6 @@ function cargarEstudioPorDia(dia) {
       document.querySelector('.study-card').innerHTML = '<p>Error al cargar el estudio.</p>';
       console.error('Error al obtener estudio:', err);
     });
-}
-
-function guardarResaltado(id) {
-  const html = document.getElementById(id).innerHTML;
-  localStorage.setItem(`resaltado_${id}`, html);
-}
-
-function cargarResaltado(id, textoOriginal) {
-  return localStorage.getItem(`resaltado_${id}`) || textoOriginal;
-}
-
-function limpiarResaltado(id, original) {
-  localStorage.removeItem(`resaltado_${id}`);
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = original;
-}
-
-function mostrarGuiaFlotante() {
-  if (!localStorage.getItem('guiaMostrada')) {
-    alert("📌 Consejo: Selecciona texto con el dedo (móvil) o el mouse (PC) para resaltarlo. Se guarda automáticamente.");
-    localStorage.setItem('guiaMostrada', 'true');
-  }
 }
 
 window.onload = function () {

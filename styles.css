@@ -1,3 +1,4 @@
+/* Estilos base */
 * {
   box-sizing: border-box;
 }
@@ -85,6 +86,16 @@ h1 {
   font-size: 16px;
 }
 
+.btn-study {
+  background: #aed581;
+  box-shadow: 0 4px 10px rgba(139, 195, 74, 0.4);
+}
+
+.btn-study:hover {
+  background: #9ccc65;
+  box-shadow: 0 6px 14px rgba(139, 195, 74, 0.6);
+}
+
 .respuesta label {
   display: block;
   margin: 8px 0;
@@ -102,23 +113,13 @@ h1 {
   font-size: 0.9em;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin: 5px 5px 5px 0;
+  margin: 5px 0;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .btn-mini:hover {
   background-color: #ddd;
-}
-
-.btn-mini.limpiar {
-  background-color: #fff3e0;
-  color: #bf360c;
-  border: 1px solid #ffa726;
-}
-
-.btn-mini.limpiar:hover {
-  background-color: #ffe0b2;
 }
 
 .nota-personal textarea {
@@ -172,47 +173,36 @@ input[type="radio"] {
   color: #fff;
 }
 
-.versiculo-box, .nota-box {
-  background-color: #fff;
-  border: 1px dashed #ccc;
-  padding: 10px;
-  border-radius: 10px;
-  min-height: 40px;
-  white-space: pre-wrap;
-  margin-bottom: 10px;
-  line-height: 1.6;
-  font-size: 15px;
-  user-select: text;
-}
-
-.highlightable span[style*="background-color"] {
-  background-color: #ffff00 !important;
-}
-
-.glossary-popup {
-  position: absolute;
-  background-color: #fff9c4;
-  color: #000;
-  border: 1px solid #fbc02d;
-  padding: 10px;
+/* ✅ Estilos nuevos aplicados para versículos y notas */
+.versiculo-box, .versiculo-box p {
+  background-color: #e3f2fd;
+  border-left: 4px solid #42a5f5;
+  padding: 10px 15px;
+  margin-top: 10px;
   border-radius: 8px;
-  max-width: 250px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  z-index: 100;
-  font-size: 14px;
-}
-
-#admin-panel {
-  background-color: #fffde7;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-#admin-output {
-  margin-top: 15px;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
   white-space: pre-wrap;
+}
+
+.nota-box, .nota-box p {
+  background-color: #fff8e1;
+  border-left: 4px solid #ffb300;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.btn-mini.limpiar {
+  background-color: #fff3e0;
+  color: #bf360c;
+  border: 1px solid #ffa726;
+  margin-top: 6px;
+}
+
+.btn-mini.limpiar:hover {
+  background-color: #ffe0b2;
 }

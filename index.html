@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Escuela Sabática</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .versiculo-box, .nota-box {
+      border: 1px dashed #ccc;
+      padding: 10px;
+      border-radius: 10px;
+      min-height: 60px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      background: #fff;
+      outline: none;
+    }
+  </style>
 </head>
 <body>
   <div class="app-wrapper" id="login-container">
@@ -17,6 +29,7 @@
     <h1>Escuela Sabática</h1>
     <p id="welcome-message"></p>
     <button class="btn" onclick="goToStudy()">Estudio del día</button>
+    <button class="btn" onclick="mostrarPanelAdmin()">📊 Panel de Administración</button>
     <button class="btn" onclick="logout()">Cerrar sesión</button>
   </div>
 
@@ -27,6 +40,16 @@
     <div class="study-card"></div>
     <button class="btn" onclick="backToWelcome()">Volver</button>
   </div>
+
+  <div class="app-wrapper" id="admin-panel" style="display: none;">
+    <h1>Panel de Administración</h1>
+    <div id="admin-output">
+      <p>Cargando datos del usuario...</p>
+    </div>
+    <button class="btn" onclick="cerrarPanelAdmin()">Volver</button>
+  </div>
+
+  <div id="glossary-popup" class="glossary-popup" style="display:none;"></div>
 
   <script src="script.js"></script>
 </body>

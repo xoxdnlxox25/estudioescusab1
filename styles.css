@@ -122,6 +122,7 @@ h1 {
   background-color: #ddd;
 }
 
+/* Notas personales */
 .nota-personal textarea {
   width: 100%;
   min-height: 80px;
@@ -173,29 +174,33 @@ input[type="radio"] {
   color: #fff;
 }
 
-/* ✅ Estilos nuevos aplicados para versículos y notas */
-.versiculo-box, .versiculo-box p {
+/* Estilo visual de versículos */
+.versiculo-box {
   background-color: #e3f2fd;
-  border-left: 4px solid #42a5f5;
+  border-left: 5px solid #42a5f5;
   padding: 10px 15px;
   margin-top: 10px;
-  border-radius: 8px;
+  margin-left: 5px;
+  border-radius: 6px;
   font-size: 15px;
   line-height: 1.6;
   white-space: pre-wrap;
 }
 
-.nota-box, .nota-box p {
+/* Estilo visual de notas */
+.nota-box {
   background-color: #fff8e1;
-  border-left: 4px solid #ffb300;
+  border-left: 5px solid #ffb300;
   padding: 10px 15px;
   margin-top: 10px;
-  border-radius: 8px;
+  margin-left: 5px;
+  border-radius: 6px;
   font-size: 15px;
   line-height: 1.6;
   white-space: pre-wrap;
 }
 
+/* Botón de limpieza opcional */
 .btn-mini.limpiar {
   background-color: #fff3e0;
   color: #bf360c;

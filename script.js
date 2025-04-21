@@ -1,9 +1,8 @@
-// script.js actualizado
 const API_URL = 'https://script.google.com/macros/s/AKfycbxbDKjQn51qF-Tc8j8uaplSctI1UT9Wzfo-PEDwnk8Y0YEI2RrS2F7hyyjT4g2PcL1KGQ/exec';
 
 function login() {
-  const username = document.getElementById('username').value;
-  if (username.trim() !== '') {
+  const username = document.getElementById('username').value.trim();
+  if (username !== '') {
     localStorage.setItem('sabadoUser', username);
     showWelcome(username);
   }
@@ -54,13 +53,8 @@ function verificarRespuesta(id, valor) {
   const correcta = resultadoEl.dataset.correcta;
   if (!correcta) return;
 
-  if (valor === correcta) {
-    resultadoEl.textContent = "✔ Correcto";
-    resultadoEl.style.color = "green";
-  } else {
-    resultadoEl.textContent = "✖ Incorrecto";
-    resultadoEl.style.color = "red";
-  }
+  resultadoEl.textContent = (valor === correcta) ? "✔ Correcto" : "✖ Incorrecto";
+  resultadoEl.style.color = (valor === correcta) ? "green" : "red";
 }
 
 function generarBotonesPorDia() {
@@ -82,7 +76,6 @@ function generarBotonesPorDia() {
 
 function cargarEstudioPorDia(dia) {
   const urlConDia = `${API_URL}?dia=${dia}`;
-
   fetch(urlConDia)
     .then(res => res.json())
     .then(data => {
@@ -114,22 +107,22 @@ function cargarEstudioPorDia(dia) {
         if (item.Versiculo) {
           contenidoHTML += `
             <button class="btn-mini" onclick="toggleVisibility('versiculo${index}')">📖 Mostrar/Ocultar versículo</button>
-            <div id="versiculo${index}" class="versiculo-box" style="display: none;">
-              <strong>Versículo:</strong> ${item.Versiculo}
+            <div id="versiculo${index}" style="display: none;">
+              <div class="versiculo-box"><strong>Versículo:</strong> ${item.Versiculo}</div>
             </div>`;
         }
 
         if (item.Nota) {
           contenidoHTML += `
             <button class="btn-mini" onclick="toggleVisibility('nota${index}')">📜 Mostrar/Ocultar nota</button>
-            <div id="nota${index}" class="nota-box" style="display: none;">
-              <strong>Nota:</strong> ${item.Nota}
+            <div id="nota${index}" style="display: none;">
+              <div class="nota-box"><strong>Nota:</strong> ${item.Nota}</div>
             </div>`;
         }
 
         if (respuestas.length > 0) {
           contenidoHTML += `
-            <button class="btn-mini" onclick="toggleVisibility('respuesta${index}')">Mostrar/Ocultar respuestas</button>
+            <button class="btn-mini" onclick="toggleVisibility('respuesta${index}')">✅ Mostrar/Ocultar respuestas</button>
             <div class="respuesta" id="respuesta${index}" style="display: none;">
               <p><strong>Respuesta:</strong></p>
               ${respuestas.map(r => {
